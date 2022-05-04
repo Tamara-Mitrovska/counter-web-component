@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./docs.css">
+    <title>API Docs</title>
+</head>
+<body>
+    <article>
+        <h1>API Documentation</h1>
+        <section>
+            <h2>Contents</h2>
+            <p>The content inside the speedy-counter tags should be a number that the counter should count up to.</p>
+        </section>
+        <section>
+            <h2>HTML attributes</h2>
+            <ul>
+                <li><strong><code>speed</code></strong>: time in seconds elapsed between two consecutive ticks of the counter. The default is 1 second. This is a reflected attribute-property.</li>
+                <li><strong><code>start</code></strong>: the initial value of the counter. The default value is 0.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>CSS properties</h2>
+            <ul>
+                <li><strong><code>--counter-color</code></strong>: the font color of the counter value. Default: black </li>
+                <li><strong><code>--counter-font-family</code></strong>: the font-family of the counter. Default: Arial </li>
+                <li><strong><code>--counter-size</code></strong>: the font size of the counter in em units. Default: 3em </li>
+            </ul>
+        </section>
+        <section>
+            <h2>Events</h2>
+            <ul>
+                <li>The counter is listening to the <strong><code>click</code></strong> event: the counter can be paused and continued by clicking on it.</li>
+                <li>The counter emits a custom <strong><code>time-up</code></strong> event when it reaches the specified number.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Importing speedy-counter</h2>
+            <p>
+                To use the speedy-counter you can add the following script tag to the head section of your HTML file.
+                <pre>
+                    <code>
+                        &lt;script src="TODO"&gt;&lt;/script&gt;
+                    </code>
+                </pre>
+            </p>
+        </section>
+    </article>
+</body>
+</html>
