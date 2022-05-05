@@ -7,18 +7,23 @@ class SpeedyCounter extends HTMLElement {
         super();
         this.state = "stopped";
         this.timer = null;
+        this.first = true;
         this.addEventListener("click", e => {
             e.preventDefault();
-            this.#clicked();
-            if (this.#startValue == this.#currValue) {
+            if (this.first) {
+                this.first = false;
                 this.#target = Number(this.innerHTML);
             }
+            this.#clicked();
         });
+        this.stoppedEvent = new CustomEvent("counter-stopped");
+        this.startedEvent = new CustomEvent("counter-started");
+        this.doneEvent = new CustomEvent("counter-done");
     }
 
     /**
-     * Reset the counter when it is done or after
-     * a change in attribute.
+     * Reset the counter when it is done or
+     * after a change in speed.
      */
     #reset() {
         clearInterval(this.timer);
@@ -39,7 +44,9 @@ class SpeedyCounter extends HTMLElement {
      * The counter can be paused / unpaused on click
      */
     #clicked() {
+        this.#render();
         if (this.state === "stopped" || this.state === "done") {
+            if (this.#currValue < this.#target) this.dispatchEvent(this.startedEvent);
             if (this.state === "done") this.#currValue = this.#startValue; // reset
             this.state = "running";
             this.timer = setInterval(() => {
@@ -48,11 +55,13 @@ class SpeedyCounter extends HTMLElement {
                     this.#render();
                 } else {
                     this.state = "done";
+                    this.dispatchEvent(this.doneEvent);
                     clearInterval(this.timer);
                     this.timer = null;
                 }
             }, this.#speed);
         } else if (this.state === "running") {
+            this.dispatchEvent(this.stoppedEvent);
             this.state = "stopped";
             clearInterval(this.timer);
             this.timer = null;
@@ -71,14 +80,24 @@ class SpeedyCounter extends HTMLElement {
         this.#speed = val;
         this.setAttribute("speed", val);
     }
+    get start() {
+        return this.#startValue;
+    }
+    set start(val) {
+        this.#startValue = val;
+        this.setAttribute("start", val);
+    }
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === "speed") {
             this.#speed = newValue;
             this.#reset();
+        } else if (name === "start") {
+            this.#startValue = newValue;
+            this.#currValue = newValue;
         }
     }
     static get observedAttributes() {
-        return ["speed"];
+        return ["speed", "start"];
     }
     
 
