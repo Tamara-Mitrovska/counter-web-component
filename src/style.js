@@ -1,14 +1,18 @@
 export function get_style() {
     return `
         <style>
-            :host {
-                font-size: var(--counter-size, 2em);
-                font-family: var(--counter-font-family, "Arial");
+            p {
+                border: 3px solid black;
+                width: fit-content;
+                padding: 0.3em;
+                background-color: var(--counter-background, white);
+                font-size: var(--counter-size, 3em);
+                font-family: "Arial";
                 color: var(--counter-color, black);
             }
-            :host:hover {
+            p:hover {
                 cursor: pointer;
             }
-        </style> 
+        </style>
     `
 }

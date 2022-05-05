@@ -1,3 +1,4 @@
+import {get_style} from "https://tamara-mitrovska.github.io/counter-web-component/src/style.js";
 
 class SpeedyCounter extends HTMLElement {
     #speed = 1000;
@@ -7,7 +8,11 @@ class SpeedyCounter extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: "open"});
-        this.shadowRoot.innerHTML = get_style();
+        this.shadowRoot.innerHTML = get_style() + `
+            <p id="content">play</p>
+        `;
+        this.content = this.shadowRoot.querySelector("#content");
+        // this.content.style = 
         this.state = "stopped";
         this.timer = null;
         this.first = true;
@@ -72,7 +77,7 @@ class SpeedyCounter extends HTMLElement {
     }
 
     #render() {
-        this.innerHTML = this.#currValue;
+        this.content.innerHTML = this.#currValue;
     }
 
     // reflected attribute-properties
@@ -105,7 +110,6 @@ class SpeedyCounter extends HTMLElement {
     
 
     connectedCallback() {
-
     }
 
     disconnectedCallback() {

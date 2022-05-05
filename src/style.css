@@ -1,0 +1,8 @@
+p {
+    font-size: var(--counter-size, 3em);
+    font-family: var(--counter-font-family, "Arial");
+    color: var(--counter-color, black);
+}
+p:hover {
+    cursor: pointer;
+}

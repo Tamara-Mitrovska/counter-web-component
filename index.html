@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="TODO"></script>
+    <script
+        src="https://tamara-mitrovska.github.io/counter-web-component/src/speedy_counter.js"
+    ></script>
     <link rel="stylesheet" href="./index.css">
     <title>speedy-counter</title>
 </head>
 <body>
     <article>
+        <p>TODO: changed speed to milliseconds, removed start value from reflected attributes</p>
         <h1>speedy-counter</h1>
         <p>
             The speedy-counter element takes a number as content and displays a counter that counts up to that number.
@@ -23,12 +26,12 @@
             <section class="sourceCode">
                 <pre>
                     <code>
-                        &lt;speedy-counter speed="2" start="90"&gt;100&lt;/speedy-counter&gt;
+                        &lt;speedy-counter speed="500" start="90"&gt;100&lt;/speedy-counter&gt;
                     </code>
                 </pre>
             </section>
             <section class="display">
-                <speedy-counter speed="2" start="90">100</speedy-counter>
+                <speedy-counter speed="500" start="90">100</speedy-counter>
             </section>
         </section>
         <section class="demo">
@@ -47,12 +50,14 @@
                 </pre>
             </section>
             <section class="display">
-                <speedy-counter id="demo-2-counter">20</speedy-counter>
+                <speedy-counter id="demo-2-counter">10</speedy-counter>
                 <script>
                     let counter_2 = document.querySelector("#demo-2-counter");
-                    setTimeout(() => {
-                        counter_2.speed = 0.5;
-                    }, 3000);
+                    counter_2.addEventListener("click", e => {
+                        setTimeout(() => {
+                            counter_2.speed = 400;
+                        }, 5000);
+                    });
                 </script>
             </section>
         </section>
@@ -134,6 +139,49 @@
                     counter.addEventListener("counter-done", e => {
                         counter.style = "--counter-color: green";
                     });
+                </script>
+            </section>
+        </section>
+        <section class="demo">
+            <h2>Demo 6 - changing the counter speed via JS code</h2>
+            <section class="sourceCode">
+                <pre>
+                    <code>
+                        &lt;speedy-counter id="demo-2-counter"&gt;20&lt;/speedy-counter&gt;
+                        &lt;script&gt;
+                            let counter_2 = document.querySelector("#demo-2-counter");
+                            setTimeout(() => {
+                                counter_2.speed = 0.5;
+                            }, 3000);
+                        &lt;/script&gt;
+                    </code>
+                </pre>
+            </section>
+            <section class="display">
+                <speedy-counter id="demo-6-counter">10</speedy-counter>
+                <script>
+                    let counter_6 = document.querySelector("#demo-6-counter");
+                    counter_6.addEventListener("click", e => {
+                        setTimeout(() => {
+                            counter_6.start = 1;
+                        }, 5000);
+                    });
+                </script>
+            </section>
+        </section>
+        <section class="demo">
+            <h2>Demo 7 - connecting the element to the DOM via JS code</h2>
+            <section class="sourceCode">
+                <pre>
+                    <code>
+                    </code>
+                </pre>
+            </section>
+            <section class="display">
+                <speedy-counter id="demo-7-counter">10</speedy-counter>
+                <script>
+                    let counter_7 = document.querySelector("#demo-7-counter");
+                    // TODO
                 </script>
             </section>
         </section>
