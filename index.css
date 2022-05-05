@@ -4,26 +4,32 @@ body {
 }
 
 h1 {
-    font-size: 1.2em;
+    font-size: 2em;
 }
 
 code {
     font-size: 1.3em;
+    word-wrap: break-word;
 }
 
 .demo-container {
-    display: grid;
-    grid-template-columns: 60% 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: left;
 }
 
 .sourceCode {
     border: 1px solid black;
     background-color: hsla(359, 0%, 89%);
     padding: 1%;
+    height: fit-content;
+    width: fit-content;
 }
 
 .display {
-    margin: auto;
+    padding: 2%;
+    width: fit-content;
     text-align: center;
 }
 

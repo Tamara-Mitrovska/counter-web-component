@@ -1,7 +1,5 @@
 import {get_style} from "./style.js";
 
-console.log(get_style());
-
 class SpeedyCounter extends HTMLElement {
     #speed = 1000;
     #currValue = 0;

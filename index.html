@@ -20,6 +20,7 @@
             the font size, font color and background color. 
             The counter can be paused and continued by clicking on it, which also causes it to emit custom <code>counter-stopped</code> and <code>counter-started</code> events.
             When the counter reaches the target number, it emits a <code>counter-done</code> event. Below you can find some demos about the usage of this web component.
+            You can find the API documentation <a href="./docs/docs.html">here</a>.
         </p>
         <section class="demo">
             <h2>Demo 1: Customizing speed and initial value</h2>
@@ -41,7 +42,7 @@
                 <section class="sourceCode">
                     <pre><code>&lt;speedy-counter id="demo-2-counter"&gt;10&lt;/speedy-counter&gt;
 &lt;script&gt;
-let counter_2 = document.querySelector("#demo-2-counter");
+    let counter_2 = document.querySelector("#demo-2-counter");
     setTimeout(() => { counter_2.speed = 400; }, 5000);
 &lt;/script&gt;</code></pre>
                 </section>
@@ -63,13 +64,13 @@ let counter_2 = document.querySelector("#demo-2-counter");
             <section class="demo-container">
                 <section class="sourceCode">
                     <pre><code>&lt;speedy-counter 
-style="--counter-color: white; --counter-background: black; --counter-size: 5em;"&gt;
+style="--counter-color: blue; --counter-background: hsl(172, 86%, 78%); --counter-size: 5em;"&gt;
     15&lt;
 /speedy-counter&gt;</code>
                     </pre>
                 </section>
                 <section class="display">
-                    <speedy-counter style="--counter-color: white; --counter-background: black; --counter-size: 5em;">15</speedy-counter>
+                    <speedy-counter style="--counter-color: blue; --counter-background: hsl(172, 86%, 78%); --counter-size: 5em;">15</speedy-counter>
                 </section>
             </section>
         </section>
@@ -78,13 +79,13 @@ style="--counter-color: white; --counter-background: black; --counter-size: 5em;
             <p>The code below listens to the counter's custom events and displays the current state.</p>
             <section class="demo-container">
                 <section class="sourceCode">
-                    <pre><code>&lt;speedy-counter id="demo-4-counter"&gt;15&lt;/speedy-counter&gt;
+                    <pre><code>&lt;speedy-counter id="demo-4-counter"&gt;10&lt;/speedy-counter&gt;
 &lt;p id="counter-state"&gt;running&lt;/p&gt;
 &lt;script&gt;
     let counterElement = document.querySelector("#demo-4-counter");
     let state = document.querySelector("#counter-state");
     counterElement.addEventListener("counter-stopped", e => {
-        state.innerHTML = "paused";
+        state.innerHTML = "stopped";
     });
     counterElement.addEventListener("counter-started", e => {
         state.innerHTML = "running";
@@ -95,7 +96,7 @@ style="--counter-color: white; --counter-background: black; --counter-size: 5em;
 &lt;/script&gt;</code></pre>
                 </section>
                 <section class="display">
-                    <speedy-counter id="demo-4-counter">15</speedy-counter>
+                    <speedy-counter id="demo-4-counter">10</speedy-counter>
                     <p id="counter-state">stopped</p>
                     <script>
                         let counterElement = document.querySelector("#demo-4-counter");
@@ -165,11 +166,11 @@ style="--counter-color: white; --counter-background: black; --counter-size: 5em;
             <section class="demo-container">
                 <section class="sourceCode">
                     <pre><code>&lt;script&gt;
-let counter_7 = document.createElement("speedy-counter");
-counter_7.innerHTML = 10;
-let currElement = document.querySelector("#demo-7");
-currElement.append(counter_7);&lt;/script&gt;
-                    </code></pre>
+    let counter_7 = document.createElement("speedy-counter");
+    counter_7.innerHTML = 10;
+    let currElement = document.querySelector("#demo-7");
+    currElement.append(counter_7);
+&lt;/script&gt;</code></pre>
                 </section>
                 <section class="display" id="demo-7">
                     <script>
