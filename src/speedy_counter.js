@@ -1,3 +1,4 @@
+
 class SpeedyCounter extends HTMLElement {
     #speed = 1000;
     #currValue = 0;
@@ -5,6 +6,8 @@ class SpeedyCounter extends HTMLElement {
     #startValue = 0;
     constructor() {
         super();
+        this.attachShadow({mode: "open"});
+        this.shadowRoot.innerHTML = get_style();
         this.state = "stopped";
         this.timer = null;
         this.first = true;
