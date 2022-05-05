@@ -17,9 +17,10 @@
         <section>
             <h2>HTML attributes</h2>
             <ul>
-                <li><strong><code>speed</code></strong>: time in seconds elapsed between two consecutive ticks of the counter. The default is 1 second. This is a reflected attribute-property.</li>
+                <li><strong><code>speed</code></strong>: time in seconds elapsed between two consecutive ticks of the counter. The default is 1 second.</li>
                 <li><strong><code>start</code></strong>: the initial value of the counter. The default value is 0.</li>
             </ul>
+            <p>Both of the attributes above are reflected.</p>
         </section>
         <section>
             <h2>CSS properties</h2>
@@ -32,8 +33,9 @@
         <section>
             <h2>Events</h2>
             <ul>
-                <li>The counter is listening to the <strong><code>click</code></strong> event: the counter can be paused and continued by clicking on it.</li>
-                <li>The counter emits a custom <strong><code>time-up</code></strong> event when it reaches the specified number.</li>
+                <li>If the counter is currently running and a user clicks on it, it emits a <strong><code>counter-stopped</code></strong> event. </li>
+                <li>If the counter is not running and a user clicks on it, it emits a <strong><code>counter-started</code></strong> event. </li>
+                <li>The counter emits a custom <strong><code>counter-done</code></strong> event when it reaches the specified number.</li>
             </ul>
         </section>
         <section>
