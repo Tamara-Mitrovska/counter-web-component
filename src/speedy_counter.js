@@ -1,3 +1,6 @@
+import {get_style} from "./src/style.js";
+
+console.log(get_style());
 
 class SpeedyCounter extends HTMLElement {
     #speed = 1000;
@@ -28,14 +31,7 @@ class SpeedyCounter extends HTMLElement {
         this.state = "stopped";
         this.timer = null;
         this.first = true;
-        this.addEventListener("click", e => {
-            e.preventDefault();
-            if (this.first) {
-                this.first = false;
-                this.#target = Number(this.innerHTML);
-            }
-            this.#clicked();
-        });
+        this.addEventListener("click", this.#clicked);
         this.stoppedEvent = new CustomEvent("counter-stopped");
         this.startedEvent = new CustomEvent("counter-started");
         this.doneEvent = new CustomEvent("counter-done");
@@ -64,6 +60,10 @@ class SpeedyCounter extends HTMLElement {
      * The counter can be paused / unpaused on click
      */
     #clicked() {
+        if (this.first) {
+            this.first = false;
+            this.#target = Number(this.innerHTML);
+        }
         this.#render();
         if (this.state === "stopped" || this.state === "done") {
             if (this.#currValue < this.#target) this.dispatchEvent(this.startedEvent);
@@ -122,12 +122,15 @@ class SpeedyCounter extends HTMLElement {
     
 
     connectedCallback() {
+        this.#render();
+
     }
 
     disconnectedCallback() {
-        this.removeEventListener("click", e => this.#clicked());
+        this.removeEventListener("click", this.#clicked);
     }
 }
 
 // register speedy-counter
 customElements.define("speedy-counter", SpeedyCounter);
+

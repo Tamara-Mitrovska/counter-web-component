@@ -3,6 +3,10 @@ body {
     font-size: .9em;
 }
 
+h1 {
+    font-size: 1.2em;
+}
+
 code {
     font-size: 1.3em;
 }
