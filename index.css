@@ -6,3 +6,20 @@ body {
 code {
     font-size: 1.3em;
 }
+
+.demo-container {
+    display: grid;
+    grid-template-columns: 60% 30%;
+}
+
+.sourceCode {
+    border: 1px solid black;
+    background-color: hsla(359, 0%, 89%);
+    padding: 1%;
+}
+
+.display {
+    margin: auto;
+    text-align: center;
+}
+

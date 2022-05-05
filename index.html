@@ -5,184 +5,179 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script
-        src="https://tamara-mitrovska.github.io/counter-web-component/src/speedy_counter.js"
+        src="./src/speedy_counter.js"
     ></script>
     <link rel="stylesheet" href="./index.css">
     <title>speedy-counter</title>
 </head>
 <body>
     <article>
-        <p>TODO: changed speed to milliseconds, removed start value from reflected attributes</p>
-        <h1>speedy-counter</h1>
+        <h1>Counter Web Component</h1>
         <p>
             The speedy-counter element takes a number as content and displays a counter that counts up to that number.
             Its speed and start value are customizable through HTML attributes. It also has customizable CSS to change
-            the font size, color and family of the displayed number. 
-            The counter can be paused and continued by clicking on it, which also causes it to emit "stopped" and "started" events.
-            When the counter reaches the desired number, it emits a "done" event.
+            the font size, font color and background color. 
+            The counter can be paused and continued by clicking on it, which also causes it to emit custom <code>counter-stopped</code> and <code>counter-started</code> events.
+            When the counter reaches the target number, it emits a <code>counter-done</code> event. Below you can find some demos about the usage of this web component.
         </p>
         <section class="demo">
-            <h2>Demo 1 - customizing the counter speed and initial value</h2>
-            <section class="sourceCode">
-                <pre>
-                    <code>
-                        &lt;speedy-counter speed="500" start="90"&gt;100&lt;/speedy-counter&gt;
-                    </code>
-                </pre>
-            </section>
-            <section class="display">
-                <speedy-counter speed="500" start="90">100</speedy-counter>
+            <h2>Demo 1: Customizing speed and initial value</h2>
+            <p>The following code sets the interval between counter ticks to 500ms and the start value to 90. To start the counter you can click on it.</p>
+            <section class="demo-container">
+                <section class="sourceCode">
+                <pre><code>&lt;speedy-counter speed="500" start="90"&gt;100&lt;/speedy-counter&gt;</code></pre>
+                </section>
+                <section class="display">
+                    <speedy-counter speed="500" start="90">100</speedy-counter>
+                </section>
             </section>
         </section>
         <section class="demo">
-            <h2>Demo 2 - changing the counter speed via JS code</h2>
-            <section class="sourceCode">
-                <pre>
-                    <code>
-                        &lt;speedy-counter id="demo-2-counter"&gt;20&lt;/speedy-counter&gt;
-                        &lt;script&gt;
-                            let counter_2 = document.querySelector("#demo-2-counter");
+            <h2>Demo 2: Changing the counter speed via JS code</h2>
+            <p>The speed and start attributes can be changed via JS code as well. 
+                The example below changes the speed of the counter 5 seconds after clicking on it.</p>
+            <section class="demo-container">
+                <section class="sourceCode">
+                    <pre><code>&lt;speedy-counter id="demo-2-counter"&gt;10&lt;/speedy-counter&gt;
+&lt;script&gt;
+let counter_2 = document.querySelector("#demo-2-counter");
+    setTimeout(() => { counter_2.speed = 400; }, 5000);
+&lt;/script&gt;</code></pre>
+                </section>
+                <section class="display">
+                    <speedy-counter id="demo-2-counter">10</speedy-counter>
+                    <script>
+                        let counter_2 = document.querySelector("#demo-2-counter");
+                        counter_2.addEventListener("click", e => {
                             setTimeout(() => {
-                                counter_2.speed = 0.5;
-                            }, 3000);
-                        &lt;/script&gt;
-                    </code>
-                </pre>
-            </section>
-            <section class="display">
-                <speedy-counter id="demo-2-counter">10</speedy-counter>
-                <script>
-                    let counter_2 = document.querySelector("#demo-2-counter");
-                    counter_2.addEventListener("click", e => {
-                        setTimeout(() => {
-                            counter_2.speed = 400;
-                        }, 5000);
-                    });
-                </script>
+                                counter_2.speed = 400;
+                            }, 5000);
+                        });
+                    </script>
+                </section>
             </section>
         </section>
         <section class="demo">
-            <h2>Demo 3 - customizing the counter CSS</h2>
-            <section class="sourceCode">
-                <pre>
-                    <code>
-                        &lt;speedy-counter style="--counter-color: red; --counter-font-family: monospace; --counter-size: 3em;"&gt;
-                            15
-                        &lt;/speedy-counter&gt;
-                    </code>
-                </pre>
-            </section>
-            <section class="display">
-                <speedy-counter style="--counter-color: red; --counter-font-family: monospace; --counter-size: 3em;">15</speedy-counter>
-            </section>
-        </section>
-        <section class="demo">
-            <h2>Demo 4 - keeping track of counter state by listening to its events</h2>
-            <section class="sourceCode">
-                <pre>
-                    <code>
-                        &lt;speedy-counter id="demo-4-counter"&gt;15&lt;/speedy-counter&gt;
-                        &lt;p id="counter-state"&gt;running&lt;/p&gt;
-                        &lt;script&gt;
-                            let counterElement = document.querySelector("#demo-4-counter");
-                            let state = document.querySelector("#counter-state");
-                            counterElement.addEventListener("counter-stopped", e => {
-                                state.innerHTML = "paused";
-                            });
-                            counterElement.addEventListener("counter-started", e => {
-                                state.innerHTML = "running";
-                            });
-                            counterElement.addEventListener("counter-done", e => {
-                                state.innerHTML = "done";
-                            });
-                        &lt;/script&gt;
-                    </code>
-                </pre>
-            </section>
-            <section class="display">
-                <speedy-counter id="demo-4-counter">15</speedy-counter>
-                <p id="counter-state">stopped</p>
-                <script>
-                    let counterElement = document.querySelector("#demo-4-counter");
-                    let state = document.querySelector("#counter-state");
-                    counterElement.addEventListener("counter-stopped", e => {
-                        state.innerHTML = "stopped";
-                    });
-                    counterElement.addEventListener("counter-started", e => {
-                        state.innerHTML = "running";
-                    });
-                    counterElement.addEventListener("counter-done", e => {
-                        state.innerHTML = "done";
-                    });
-                </script>
+            <h2>Demo 3: Customizing the CSS</h2>
+            <section class="demo-container">
+                <section class="sourceCode">
+                    <pre><code>&lt;speedy-counter 
+style="--counter-color: white; --counter-background: black; --counter-size: 5em;"&gt;
+    15&lt;
+/speedy-counter&gt;</code>
+                    </pre>
+                </section>
+                <section class="display">
+                    <speedy-counter style="--counter-color: white; --counter-background: black; --counter-size: 5em;">15</speedy-counter>
+                </section>
             </section>
         </section>
         <section class="demo">
-            <h2>Demo 5 - changing the counter color on a "counter-done" event</h2>
-            <section class="sourceCode">
-                <pre>
-                    <code>
-                        &lt;speedy-counter id="demo-5-counter" speed="2"&gt;5&lt;/speedy-counter&gt;
-                        &lt;script&gt;
-                            let counter = document.querySelector("#demo-5-counter");
-                            counter.addEventListener("counter-done", e => {
-                                counter.style = "--counter-color: green";
-                            });
-                        &lt;/script&gt;
-                    </code>
-                </pre>
-            </section>
-            <section class="display">
-                <speedy-counter id="demo-5-counter" speed="2">5</speedy-counter>
-                <script>
-                    let counter = document.querySelector("#demo-5-counter");
-                    counter.addEventListener("counter-done", e => {
-                        counter.style = "--counter-color: green";
-                    });
-                </script>
+            <h2>Demo 4: Keeping track of counter state</h2>
+            <p>The code below listens to the counter's custom events and displays the current state.</p>
+            <section class="demo-container">
+                <section class="sourceCode">
+                    <pre><code>&lt;speedy-counter id="demo-4-counter"&gt;15&lt;/speedy-counter&gt;
+&lt;p id="counter-state"&gt;running&lt;/p&gt;
+&lt;script&gt;
+    let counterElement = document.querySelector("#demo-4-counter");
+    let state = document.querySelector("#counter-state");
+    counterElement.addEventListener("counter-stopped", e => {
+        state.innerHTML = "paused";
+    });
+    counterElement.addEventListener("counter-started", e => {
+        state.innerHTML = "running";
+    });
+    counterElement.addEventListener("counter-done", e => {
+        state.innerHTML = "done";
+    });
+&lt;/script&gt;</code></pre>
+                </section>
+                <section class="display">
+                    <speedy-counter id="demo-4-counter">15</speedy-counter>
+                    <p id="counter-state">stopped</p>
+                    <script>
+                        let counterElement = document.querySelector("#demo-4-counter");
+                        let state = document.querySelector("#counter-state");
+                        counterElement.addEventListener("counter-stopped", e => {
+                            state.innerHTML = "stopped";
+                        });
+                        counterElement.addEventListener("counter-started", e => {
+                            state.innerHTML = "running";
+                        });
+                        counterElement.addEventListener("counter-done", e => {
+                            state.innerHTML = "done";
+                        });
+                    </script>
+                </section>
             </section>
         </section>
         <section class="demo">
-            <h2>Demo 6 - changing the counter speed via JS code</h2>
-            <section class="sourceCode">
-                <pre>
-                    <code>
-                        &lt;speedy-counter id="demo-2-counter"&gt;20&lt;/speedy-counter&gt;
-                        &lt;script&gt;
-                            let counter_2 = document.querySelector("#demo-2-counter");
+            <h2>Demo 5: Changing the counter color on a <code>counter-done</code> event</h2>
+            <section class="demo-container">
+                <section class="sourceCode">
+                    <pre><code>&lt;speedy-counter id="demo-5-counter"&gt;5&lt;/speedy-counter&gt;
+&lt;script&gt;
+    let counter = document.querySelector("#demo-5-counter");
+    counter.addEventListener("counter-done", e => {
+        counter.style = "--counter-color: green";
+    });
+&lt;/script&gt;</code></pre>
+                </section>
+                <section class="display">
+                    <speedy-counter id="demo-5-counter">5</speedy-counter>
+                    <script>
+                        let counter = document.querySelector("#demo-5-counter");
+                        counter.addEventListener("counter-done", e => {
+                            counter.style = "--counter-color: green";
+                        });
+                    </script>
+                </section>
+            </section>
+        </section>
+        <section class="demo">
+            <h2>Demo 6: Changing the start value via JS code</h2>
+            <p>This demo is like demo 2 from above with the only difference that it changes the start value instead of the speed.</p>
+            <section class="demo-container">
+                <section class="sourceCode">
+                    <pre><code>&lt;speedy-counter id="demo-6-counter"&gt;20&lt;/speedy-counter&gt;
+&lt;script&gt;
+    let counter_6 = document.querySelector("#demo-6-counter");
+    setTimeout(() => { counter_6.start = 5; }, 5000);
+&lt;/script&gt;</code></pre>
+                </section>
+                <section class="display">
+                    <speedy-counter id="demo-6-counter">20</speedy-counter>
+                    <script>
+                        let counter_6 = document.querySelector("#demo-6-counter");
+                        counter_6.addEventListener("click", e => {
                             setTimeout(() => {
-                                counter_2.speed = 0.5;
-                            }, 3000);
-                        &lt;/script&gt;
-                    </code>
-                </pre>
-            </section>
-            <section class="display">
-                <speedy-counter id="demo-6-counter">10</speedy-counter>
-                <script>
-                    let counter_6 = document.querySelector("#demo-6-counter");
-                    counter_6.addEventListener("click", e => {
-                        setTimeout(() => {
-                            counter_6.start = 1;
-                        }, 5000);
-                    });
-                </script>
+                                counter_6.start = 5;
+                            }, 5000);
+                        });
+                    </script>
+                </section>
             </section>
         </section>
         <section class="demo">
-            <h2>Demo 7 - connecting the element to the DOM via JS code</h2>
-            <section class="sourceCode">
-                <pre>
-                    <code>
-                    </code>
-                </pre>
-            </section>
-            <section class="display">
-                <speedy-counter id="demo-7-counter">10</speedy-counter>
-                <script>
-                    let counter_7 = document.querySelector("#demo-7-counter");
-                    // TODO
-                </script>
+            <h2>Demo 7: Connecting the element to the DOM via JS code</h2>
+            <section class="demo-container">
+                <section class="sourceCode">
+                    <pre><code>&lt;script&gt;
+let counter_7 = document.createElement("speedy-counter");
+counter_7.innerHTML = 10;
+let currElement = document.querySelector("#demo-7");
+currElement.append(counter_7);&lt;/script&gt;
+                    </code></pre>
+                </section>
+                <section class="display" id="demo-7">
+                    <script>
+                        let counter_7 = document.createElement("speedy-counter");
+                        counter_7.innerHTML = 10;
+                        let currElement = document.querySelector("#demo-7");
+                        currElement.append(counter_7);
+                    </script>
+                </section>
             </section>
         </section>
     </article>

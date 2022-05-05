@@ -1,4 +1,3 @@
-import {get_style} from "https://tamara-mitrovska.github.io/counter-web-component/src/style.js";
 
 class SpeedyCounter extends HTMLElement {
     #speed = 1000;
@@ -8,11 +7,24 @@ class SpeedyCounter extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: "open"});
-        this.shadowRoot.innerHTML = get_style() + `
+        this.shadowRoot.innerHTML = `
+            <style>
+                p {
+                    border: 3px solid black;
+                    width: fit-content;
+                    padding: 0.3em;
+                    background-color: var(--counter-background, white);
+                    font-size: var(--counter-size, 3em);
+                    font-family: "Arial";
+                    color: var(--counter-color, black);
+                }
+                p:hover {
+                    cursor: pointer;
+                }
+            </style>
             <p id="content">play</p>
         `;
         this.content = this.shadowRoot.querySelector("#content");
-        // this.content.style = 
         this.state = "stopped";
         this.timer = null;
         this.first = true;
