@@ -1,4 +1,4 @@
-import {get_style} from "./src/style.js";
+import {get_style} from "./style.js";
 
 console.log(get_style());
 
@@ -10,21 +10,7 @@ class SpeedyCounter extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: "open"});
-        this.shadowRoot.innerHTML = `
-            <style>
-                p {
-                    border: 3px solid black;
-                    width: fit-content;
-                    padding: 0.3em;
-                    background-color: var(--counter-background, white);
-                    font-size: var(--counter-size, 3em);
-                    font-family: "Arial";
-                    color: var(--counter-color, black);
-                }
-                p:hover {
-                    cursor: pointer;
-                }
-            </style>
+        this.shadowRoot.innerHTML = get_style() + `
             <p id="content">play</p>
         `;
         this.content = this.shadowRoot.querySelector("#content");
