@@ -2,7 +2,6 @@ export function get_style() {
     return `
         <style>
             p {
-                border: 3px solid black;
                 width: fit-content;
                 padding: 0.3em;
                 background-color: var(--counter-background, white);
